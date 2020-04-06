@@ -1,0 +1,25 @@
+default: &default
+  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['POSTGRESS_ADDRESS'] %>
+  password: <%= ENV['POSTGRESS_PASS'] %>
+  username: <%= ENV['POSTGRESS_USER'] %>
+
+development:
+  <<: *default
+  database: <%= ENV['POSTGRESS_DB'] %>
+  username: <%= ENV['POSTGRESS_USER'] %>
+  password: <%= ENV['POSTGRESS_PASS'] %>
+
+test:
+  <<: *default
+  database: <%= ENV['POSTGRESS_DB'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['POSTGRESS_DB'] %>
+  username: <%= ENV['POSTGRESS_USER'] %>
+  password: <%= ENV['POSTGRESS_PASS'] %>
